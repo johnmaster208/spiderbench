@@ -9,7 +9,6 @@ AB=$(which ab)
 WGET=$(which wget)
 URL=''
 
-
 spinner() {
 	local pid=$1
 	local delay=0.10
@@ -40,28 +39,31 @@ genlinks() {
 
 clear
 printf "${DEFAULT}"
-echo "Checking requirements..."
+echo "Checking dependencies..."
+sleep 1
+echo "Looking for Homebrew installation..."
 sleep $[ ( $RANDOM % 5 )  + 1 ]s
 if [[ -z "$HB" ]]; then
 	echo "We didn't find Homebrew intalled on your system."
 else
 	echo "Homebrew is installed on your system ${BLUE}[OK]${DEFAULT}."
 fi
-echo "..."
+echo "Looking for wget installation..."
 sleep $[ ( $RANDOM % 5 )  + 1 ]s
 if [[ -z "$WGET" ]]; then
 	echo "We didn't find wget installed on your system\n".
 else
 	echo "wget utility is installed on your system ${BLUE}[OK]${DEFAULT}."
 fi
-echo "..."
+echo "Looking for Apache Bench installation..."
 sleep $[ ( $RANDOM % 5 )  + 1 ]s
 if [[ -z "$AB" ]]; then
 	echo "We didn't find Apache Bench (ab) installed on your system\n".
 else
 	echo "Apache Bench was installed on your system ${BLUE}[OK]${DEFAULT}."
 fi
-echo "..."
+sleep 1
+echo "Cleaning up some older files..."
 if [[ -f ./crawl.txt ]]; then
 	echo "Previous 'crawl.txt' found. Removing."
 	rm ./crawl.txt
@@ -79,7 +81,7 @@ echo "Press the ENTER key to get started..."
 read -n 1 -s
 sleep 1
 clear
-read -p "Enter the URL of the website you'd like to benchmark [http://mydomain.com]: " URL
+read -p "Enter the URL of the website you'd like to benchmark [http://mydomain.com], without the trailing slash (/) on the end: " URL
 echo "URL saved as ${BLUE}$URL${DEFAULT}"
 sleep 1
 echo "Next, we'll create a sitemap with ${BLUE}wget${DEFAULT}"
@@ -99,7 +101,7 @@ echo "Running Bench tests..."
 touch output.csv
 echo "URL,MIN,MEAN,SD,MED,MAX" >> output.csv
 while read url; do
-echo "$url, $(ab -n 30 -c 5 $URL | sed -n '/Total:/p' | awk -v OFS=, '{ print $2, $3, $4, $5, $6 }')" >> output.csv 
+echo "$url, $(ab -n 5 -c 5 $URL/ | sed -n '/Total:/p' | awk -v OFS=, '{ print $2, $3, $4, $5, $6 }')" >> output.csv 
 done < links.txt & spinner $!
 
 echo "Bench tests COMPLETED. Look at ${BLUE}output.csv${DEFAULT} for your bench test output!"

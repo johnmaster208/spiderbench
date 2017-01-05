@@ -99,7 +99,7 @@ echo "Running Bench tests..."
 touch output.csv
 echo "URL,MIN,MEAN,SD,MED,MAX" >> output.csv
 while read url; do
-echo "$url, $(ab -n 5 -c 5 http://www.saml-dev.digium.com:8082/ | sed -n '/Total:/p' | awk -v OFS=, '{ print $2, $3, $4, $5, $6 }')" >> output.csv 
+echo "$url, $(ab -n 30 -c 5 $URL | sed -n '/Total:/p' | awk -v OFS=, '{ print $2, $3, $4, $5, $6 }')" >> output.csv 
 done < links.txt & spinner $!
 
 echo "Bench tests COMPLETED. Look at ${BLUE}output.csv${DEFAULT} for your bench test output!"

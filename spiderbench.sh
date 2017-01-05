@@ -62,7 +62,7 @@ else
 	echo "Apache Bench was installed on your system ${BLUE}[OK]${DEFAULT}."
 fi
 echo "..."
-if [[ -f crawl.txt ]]; then
+if [[ -f ./crawl.txt ]]; then
 	echo "Previous 'crawl.txt' found. Removing."
 	rm ./crawl.txt
 fi
@@ -71,8 +71,8 @@ if [[ -f ./links.txt ]]; then
 	rm ./links.txt
 fi
 if [[ -f ./output.csv ]]; then
-	echo "Previous 'links.txt' file was found. Removing."
-	rm ./links.txt
+	echo "Previous 'output.csv' file was found. Removing."
+	rm ./output.csv
 fi
 echo "System check COMPLETED!"
 echo "Press the ENTER key to get started..."

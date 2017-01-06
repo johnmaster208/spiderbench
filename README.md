@@ -1,5 +1,5 @@
 # Spiderbench
-Bash script that automates the spidering of a website using wget collects some quick perf stats using Apache Bench
+Bash script that automates the spidering of a website using wget and collects some quick perf stats using Apache Bench
 
 ## About this utility
 I created this tiny script out of desparation and angst. After scouring the internet for awhile, I determined there wasn't a simple utility for just crawling the top layers of the website to show my managers some simple performance numbers. I didn't want to pay someone for software when UNIX has the tools I need for free hence, I built my own. Spiderbench scratched the 'itch' at least long enough for me to get out of the meeting and back in front of my regular workload.

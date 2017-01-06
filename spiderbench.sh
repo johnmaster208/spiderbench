@@ -60,7 +60,17 @@ echo "Looking for Apache Bench installation..."
 sleep $[ ( $RANDOM % 5 )  + 1 ]s
 if [[ -z "$AB" ]]; then
 	echo "${RED}We didn't find Apache Bench (ab) installed on your system.${DEFAULT}".
-	exit
+	read -p "Would you like to install it now? (Y/n): " ab
+		case $ab in
+			[Yy]*) INSTALL_AB=1; echo "Installing Apache Bench...";;
+			[Nn]*) echo "Ok, we won't install right now. Goodbye!"; exit;; 
+		esac
+	if [ $INSTALL_AB -eq 1 ] && [ -z "$HB" ]; then
+		sudo apt-get install apache2utils
+	elif [[ $INSTALL_AB -eq 1 ]]; then
+		brew install ab
+	fi
+	
 else
 	echo "Apache Bench was installed on your system ${BLUE}[OK]${DEFAULT}."
 fi

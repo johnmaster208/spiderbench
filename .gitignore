@@ -1,3 +1,6 @@
+# These files get re-created when script runs
 crawl.txt
 links.txt
 output.csv
+# Ignore any previous crawl directories
+**

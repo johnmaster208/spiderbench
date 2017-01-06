@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #Variables
 DEFAULT='\033[1;37m' #white text
@@ -44,21 +44,23 @@ sleep 1
 echo "Looking for Homebrew installation..."
 sleep $[ ( $RANDOM % 5 )  + 1 ]s
 if [[ -z "$HB" ]]; then
-	echo "We didn't find Homebrew intalled on your system."
+	echo "${RED}We didn't find Homebrew installed on your system.${DEFAULT}"
 else
 	echo "Homebrew is installed on your system ${BLUE}[OK]${DEFAULT}."
 fi
 echo "Looking for wget installation..."
 sleep $[ ( $RANDOM % 5 )  + 1 ]s
 if [[ -z "$WGET" ]]; then
-	echo "We didn't find wget installed on your system\n".
+	echo "${RED}We didn't find wget installed on your system.${DEFAULT}".
+	exit
 else
 	echo "wget utility is installed on your system ${BLUE}[OK]${DEFAULT}."
 fi
 echo "Looking for Apache Bench installation..."
 sleep $[ ( $RANDOM % 5 )  + 1 ]s
 if [[ -z "$AB" ]]; then
-	echo "We didn't find Apache Bench (ab) installed on your system\n".
+	echo "${RED}We didn't find Apache Bench (ab) installed on your system.${DEFAULT}".
+	exit
 else
 	echo "Apache Bench was installed on your system ${BLUE}[OK]${DEFAULT}."
 fi

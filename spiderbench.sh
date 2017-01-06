@@ -51,15 +51,15 @@ fi
 echo "Looking for wget installation..."
 sleep $[ ( $RANDOM % 5 )  + 1 ]s
 if [[ -z "$WGET" ]]; then
-	echo "${RED}We didn't find wget installed on your system.${DEFAULT}".
+	echo "${RED}We didn't find wget installed on your system.${DEFAULT}"
 	exit
 else
-	echo "wget utility is installed on your system ${BLUE}[OK]${DEFAULT}."
+	echo "wget utility is installed on your system ${BLUE}[OK]${DEFAULT}"
 fi
 echo "Looking for Apache Bench installation..."
 sleep $[ ( $RANDOM % 5 )  + 1 ]s
 if [[ -z "$AB" ]]; then
-	echo "${RED}We didn't find Apache Bench (ab) installed on your system.${DEFAULT}".
+	echo "${RED}We didn't find Apache Bench (ab) installed on your system.${DEFAULT}"
 	read -p "Would you like to install it now? (Y/n): " ab
 		case $ab in
 			[Yy]*) INSTALL_AB=1; echo "Installing Apache Bench...";;

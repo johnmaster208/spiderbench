@@ -65,7 +65,7 @@ main() {
 				[Nn]*) echo "Ok, we won't install right now. Goodbye!"; exit;; 
 			esac
 		if [ $INSTALL_AB -eq 1 ] && [ -z "$HB" ]; then
-			sudo apt-get install apache2utils
+			sudo apt-get install apache2-utils
 		elif [[ $INSTALL_AB -eq 1 ]]; then
 			brew install ab
 		fi
